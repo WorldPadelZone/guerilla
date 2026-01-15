@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>guerill.africa</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2f2",
+                        "background-dark": "#102222",
+                        "card-bg": "#1b2727",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #102222;
+        }
+
+        .liquid-gradient {
+            background: linear-gradient(135deg, #0df2f2 0%, #084e4e 50%, #102222 100%);
+        }
+
+        .glass-card {
+            background: rgba(27, 39, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(13, 242, 242, 0.1);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #0df2f2, transparent);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(13, 242, 242, 0.5);
+        }
+
+        .nav-link {
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white selection:bg-primary selection:text-black">
+    <!-- Navigation -->
+    <header
+        class="sticky top-0 z-50 flex items-center justify-between border-b border-[#283939] bg-background-dark/90 backdrop-blur-md px-4 md:px-12 py-4">
+        <div class="flex items-center gap-3">
+            <div class="size-8 text-primary">
+                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z"
+                        fill="currentColor"></path>
+                </svg>
+            </div>
+            <h2 class="text-white text-lg md:text-xl font-bold font-display tracking-tight">guerilla<span
+                    class="text-primary">.africa</span></h2>
+        </div>
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="md:hidden text-primary focus:outline-none" aria-label="Toggle navigation">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+        <nav id="mobile-nav"
+            class="hidden flex-col absolute top-full left-0 w-full bg-background-dark/95 backdrop-blur-md md:hidden">
+            <a class="block text-white/70 hover:text-primary py-2 px-4" href="#session1">Image Gen</a>
+            <a class="block text-white/70 hover:text-primary py-2 px-4" href="#session2">Video Gen</a>
+            <a class="block text-white/70 hover:text-primary py-2 px-4" href="#toolkit">Toolkit</a>
+            <a class="block text-white/70 hover:text-primary py-2 px-4" href="#prompts">Prompts</a>
+            <a class="block text-white/70 hover:text-primary py-2 px-4" href="#resources">Resources</a>
+        </nav>
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-white/70 hover:text-primary transition-colors text-sm font-medium" href="#session1">Image
+                Gen</a>
+            <a class="text-white/70 hover:text-primary transition-colors text-sm font-medium" href="#session2">Video
+                Gen</a>
+            <a class="text-white/70 hover:text-primary transition-colors text-sm font-medium"
+                href="#toolkit">Toolkit</a>
+            <a class="text-white/70 hover:text-primary transition-colors text-sm font-medium"
+                href="#prompts">Prompts</a>
+            <a class="text-white/70 hover:text-primary transition-colors text-sm font-medium"
+                href="#resources">Resources</a>
+        </nav>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            <span class="text-xs font-bold uppercase tracking-widest text-primary hidden sm:inline">Month 1-2</span>
+        </div>
+    </header>
+
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="relative w-full py-12 md:py-20 px-4 md:px-12">
+            <div class="absolute inset-0 liquid-gradient opacity-10"></div>
+            <div class="relative max-w-5xl mx-auto text-center">
+                <h1
+                    class="text-4xl sm:text-5xl md:text-7xl font-black leading-tight tracking-tighter text-white font-display mb-6">
+                    AI TRAINING<br /><span class="text-primary">FOUNDATIONS</span>
+                </h1>
+                <p class="text-lg md:text-xl text-[#9cbaba] max-w-2xl mx-auto font-medium leading-relaxed mb-8">
+                    Welcome to <strong class="text-white">Foundations</strong> — the first module of the Guerilla AI
+                    Training program.
+                    Building the bedrock for AI adoption. This isn't about syntax—it's about <em>thinking
+                        differently</em>.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#session1"
+                        class="bg-primary text-black px-6 py-3 rounded-full font-bold hover:shadow-[0_0_20px_rgba(13,242,242,0.4)] transition-all">
+                        Start Session 1
+                    </a>
+                    <a href="#toolkit"
+                        class="border border-white/20 text-white px-6 py-3 rounded-full font-bold hover:bg-white/10 transition-all">
+                        View Toolkit
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider mx-4 md:mx-12"></div>
+
+        <!-- Session 1: AI Image Generation -->
+        <section id="session1" class="py-12 md:py-20 px-4 md:px-12">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="material-symbols-outlined text-primary text-3xl">image</span>
+                    <h2 class="text-2xl md:text-4xl font-bold font-display tracking-tight">Session 1: The Art of
+                        Possible — AI Image Generation</h2>
+                </div>
+
+                <!-- Quote Card -->
+                <div class="glass-card rounded-xl p-6 mb-8 border-l-4 border-primary">
+                    <p class="text-lg italic text-[#9cbaba]">
+                        "Before AI: 3 billboard concepts in 4 days. With AI: 30 concepts in 4 hours. Same team. Same
+                        talent. Radically different output."
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 md:p-8 mb-8">
+                    <h3 class="text-xl font-bold text-primary mb-4">Why Image Generation Changes Everything</h3>
+                    <p class="text-[#9cbaba] leading-relaxed">
+                        AI image generation isn't about replacing designers—it's about <strong
+                            class="text-white">10x-ing your concepting speed</strong>.
+                        What once took days now takes hours. What once meant 3 concepts now means 30. This is the new
+                        baseline for creative agencies.
+                    </p>
+                </div>
+
+                <!-- Tier 1 Tools -->
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="text-2xl">🏆</span> Tier 1: Industry Leaders (January 2026)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <span class="text-primary text-xl">⭐</span>
+                            <div>
+                                <h4 class="font-bold text-white">Midjourney v8</h4>
+                                <p class="text-xs text-primary mb-2">Already Licensed</p>
+                                <p class="text-sm text-[#9cbaba]">Unmatched artistic quality, now includes video
+                                    generation. Best for billboard concepts, campaign mood boards, pitch visuals.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <span class="text-primary text-xl">🎯</span>
+                            <div>
+                                <h4 class="font-bold text-white">GPT Image 1.5</h4>
+                                <p class="text-xs text-primary mb-2">via ChatGPT Plus — $20/mo</p>
+                                <p class="text-sm text-[#9cbaba]">OpenAI's latest image model. Best text rendering,
+                                    logos, photorealistic detail. Replaces DALL-E 3.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <span class="text-primary text-xl">💬</span>
+                            <div>
+                                <h4 class="font-bold text-white">ChatGPT (GPT-4o)</h4>
+                                <p class="text-xs text-primary mb-2">$20/mo</p>
+                                <p class="text-sm text-[#9cbaba]">Conversational image creation/editing. Perfect for
+                                    quick mockups during client calls.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <span class="text-primary text-xl">🔷</span>
+                            <div>
+                                <h4 class="font-bold text-white">Google Gemini 2.5</h4>
+                                <p class="text-xs text-primary mb-2">Free tier available</p>
+                                <p class="text-sm text-[#9cbaba]">Speed, photorealism, editing existing images.
+                                    Ecosystem integration.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <span class="text-primary text-xl">💡</span>
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Higgsfield AI</h4>
+                                <p class="text-xs text-primary mb-1">Free tier</p>
+                                <p class="text-xs text-[#9cbaba]">Cutting‑edge AI image generation platform for rapid
+                                    prototyping and high‑quality output.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tier 2 Tools -->
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="text-2xl">🎨</span> Tier 2: Specialized Excellence
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="glass-card rounded-xl p-4 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white text-sm">Adobe Firefly</h4>
+                        <p class="text-xs text-[#9cbaba] mt-2">Commercially safe, trained on licensed content. Use for
+                            client deliverables.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white text-sm">Leonardo.ai</h4>
+                        <p class="text-xs text-[#9cbaba] mt-2">Character consistency across images. Perfect for
+                            multi-touchpoint campaigns.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white text-sm">Ideogram</h4>
+                        <p class="text-xs text-[#9cbaba] mt-2">Industry-leading text accuracy. Logos, posters, signage
+                            concepts.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white text-sm">FLUX</h4>
+                        <p class="text-xs text-[#9cbaba] mt-2">Open-source powerhouse. Full customization,
+                            brand-specific model training.</p>
+                    </div>
+                </div>
+
+                <!-- Guerilla Example -->
+                <div class="bg-primary/10 border border-primary/20 rounded-xl p-6 mb-8">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">cases</span>
+                        Real Guerilla Example: AR Campaign Concepting
+                    </h3>
+                    <p class="text-primary font-semibold mb-3">Client: Vuse Pro (Private Property)</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-background-dark/50 rounded-lg p-4">
+                            <p class="text-xs text-white/50 uppercase mb-1">Before AI</p>
+                            <p class="text-sm text-[#9cbaba]">Designer creates 2-3 mockup concepts (3-4 days)</p>
+                        </div>
+                        <div class="bg-background-dark/50 rounded-lg p-4">
+                            <p class="text-xs text-white/50 uppercase mb-1">With AI</p>
+                            <p class="text-sm text-[#9cbaba]">ChatGPT brainstorms 20 → Midjourney visualizes 8 → Claude
+                                writes journeys (4 hours)</p>
+                        </div>
+                        <div class="bg-background-dark/50 rounded-lg p-4 border border-primary/30">
+                            <p class="text-xs text-primary uppercase mb-1">Impact</p>
+                            <p class="text-sm text-white font-semibold">8 concepts vs 2-3, in 4 hours instead of 3-4
+                                days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decision Table -->
+                <div class="glass-card rounded-xl overflow-hidden mb-8">
+                    <div class="bg-primary/20 p-4">
+                        <h3 class="font-bold">Choosing the Right Tool</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-background-dark/50">
+                                <tr>
+                                    <th class="text-left p-3 text-primary">Scenario</th>
+                                    <th class="text-left p-3 text-primary">Best Tool</th>
+                                    <th class="text-left p-3 text-primary">Why</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-[#9cbaba]">
+                                <tr class="border-t border-white/5">
+                                    <td class="p-3">Billboard concept art</td>
+                                    <td class="p-3 text-white">Midjourney</td>
+                                    <td class="p-3">Highest artistic quality</td>
+                                </tr>
+                                <tr class="border-t border-white/5 bg-white/5">
+                                    <td class="p-3">Quick mockup during client call</td>
+                                    <td class="p-3 text-white">ChatGPT / GPT Image 1.5</td>
+                                    <td class="p-3">Conversational, fast</td>
+                                </tr>
+                                <tr class="border-t border-white/5">
+                                    <td class="p-3">Social post with text overlay</td>
+                                    <td class="p-3 text-white">Gemini or Ideogram</td>
+                                    <td class="p-3">Accurate text rendering</td>
+                                </tr>
+                                <tr class="border-t border-white/5 bg-white/5">
+                                    <td class="p-3">Client deliverable (legal safety)</td>
+                                    <td class="p-3 text-white">Adobe Firefly</td>
+                                    <td class="p-3">IP-clear training data</td>
+                                </tr>
+                                <tr class="border-t border-white/5">
+                                    <td class="p-3">Same character across campaign</td>
+                                    <td class="p-3 text-white">Leonardo.ai</td>
+                                    <td class="p-3">Character consistency</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Action Items -->
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">checklist</span>
+                        Session 1 Action Items
+                    </h3>
+                    <ol class="space-y-3 text-[#9cbaba]">
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+                            <span>Request Midjourney v8 access from team lead (already licensed)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+                            <span>Test GPT Image 1.5 via ChatGPT Plus for quick iteration</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">3</span>
+                            <span>Try the same prompt across Midjourney, ChatGPT, and Gemini—compare results</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">4</span>
+                            <span>Create one billboard concept using AI for an active client project</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider mx-4 md:mx-12"></div>
+
+        <!-- Session 2: AI Video Generation -->
+        <section id="session2" class="py-12 md:py-20 px-4 md:px-12">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="material-symbols-outlined text-primary text-3xl">videocam</span>
+                    <h2 class="text-2xl md:text-4xl font-bold font-display tracking-tight">Session 2: The Art of
+                        Possible — AI Video Generation</h2>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 mb-8 border-l-4 border-primary">
+                    <p class="text-lg italic text-[#9cbaba]">
+                        "The best video tool depends on your goal: Photorealism? Sora. Professional control? Runway.
+                        Speed? Pika. Avatar presentations? Synthesia. Know your tools."
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 md:p-8 mb-8">
+                    <h3 class="text-xl font-bold text-primary mb-4">Video Generation Has Arrived</h3>
+                    <p class="text-[#9cbaba] leading-relaxed">
+                        2026 is the year AI video generation became <strong
+                            class="text-white">production-ready</strong>.
+                        We're no longer talking about glitchy experiments—we're talking about cinematic-quality content,
+                        synchronized audio, and consistent characters.
+                    </p>
+                </div>
+
+                <!-- Generative Video Tools -->
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="text-2xl">🎬</span> Generative Video (Text/Image to Video)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-primary">⭐</span>
+                            <h4 class="font-bold text-white">Kling AI 2.6</h4>
+                        </div>
+                        <p class="text-xs text-[#9cbaba]">Current leader for cinematic quality. Ultra-realistic motion,
+                            physics simulation, 2-minute clips with synced audio.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">OpenAI Sora 2</h4>
+                        <p class="text-xs text-primary mb-1">$20/mo via ChatGPT</p>
+                        <p class="text-xs text-[#9cbaba]">Photorealism benchmark. Near-indistinguishable from reality.
+                            Native synchronized audio, up to 25s.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">Google Veo 3.1</h4>
+                        <p class="text-xs text-primary mb-1">January 2026 update</p>
+                        <p class="text-xs text-[#9cbaba]">4K upscaling, vertical video, reference images. Versatile for
+                            sci-fi to talking-head content.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">RunwayML Gen-4.5</h4>
+                        <p class="text-xs text-primary mb-1">Free tier available</p>
+                        <p class="text-xs text-[#9cbaba]">Professional's choice. Motion Brush, Director Mode,
+                            keyframing. Best for frame-level control.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">Pika Labs 2.5</h4>
+                        <p class="text-xs text-primary mb-1">Free tier</p>
+                        <p class="text-xs text-[#9cbaba]">Speed champion (30-90 sec generation). Creative effects,
+                            stylized output. Perfect for daily social content.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">Luma Dream Machine</h4>
+                        <p class="text-xs text-[#9cbaba]">Smooth, aesthetic motion. Great for brand content landscapes.
+                        </p>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">Higgsfield AI</h4>
+                        <p class="text-xs text-primary mb-1">Free tier</p>
+                        <p class="text-xs text-[#9cbaba]">Cutting‑edge AI video generation platform for rapid
+                            prototyping and high‑quality output.</p>
+                    </div>
+                </div>
+
+                <!-- Avatar Tools -->
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="text-2xl">👤</span> Avatar & Presenter Videos
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">Synthesia</h4>
+                        <p class="text-xs text-[#9cbaba]">230+ realistic AI avatars, 140+ languages. Corporate training,
+                            client presentations. Create content in English, Afrikaans, Zulu, Xhosa without multiple
+                            shoots.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">HeyGen</h4>
+                        <p class="text-xs text-[#9cbaba]">Video translation with lip-sync. Take one English testimonial,
+                            auto-generate Afrikaans version with matching lip movement.</p>
+                    </div>
+                </div>
+
+                <!-- Editing Tools -->
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="text-2xl">✂️</span> Editing & Repurposing
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">Descript</h4>
+                        <p class="text-xs text-[#9cbaba]">Edit video like a document. Delete words from transcript,
+                            video edits automatically. Remove filler words instantly.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 tool-card transition-all duration-300">
+                        <h4 class="font-bold text-white mb-2">Opus Clip</h4>
+                        <p class="text-xs text-[#9cbaba]">AI identifies viral-worthy moments from long videos.
+                            Auto-creates social clips with virality scoring.</p>
+                    </div>
+                </div>
+
+                <!-- Guerilla Example -->
+                <div class="bg-primary/10 border border-primary/20 rounded-xl p-6 mb-8">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">cases</span>
+                        Real Guerilla Example: Multilingual Client Content
+                    </h3>
+                    <p class="text-primary font-semibold mb-3">Scenario: DStv Internet Launch Video</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-background-dark/50 rounded-lg p-4">
+                            <p class="text-xs text-white/50 uppercase mb-1">Before AI</p>
+                            <p class="text-sm text-[#9cbaba]">Shoot testimonial 4 times (English, Afrikaans, Zulu,
+                                Xhosa) — 4 days, 4x cost</p>
+                        </div>
+                        <div class="bg-background-dark/50 rounded-lg p-4">
+                            <p class="text-xs text-white/50 uppercase mb-1">With AI</p>
+                            <p class="text-sm text-[#9cbaba]">Shoot once in English → HeyGen translates with lip-sync →
+                                4 videos in 4 hours</p>
+                        </div>
+                        <div class="bg-background-dark/50 rounded-lg p-4 border border-primary/30">
+                            <p class="text-xs text-primary uppercase mb-1">Impact</p>
+                            <p class="text-sm text-white font-semibold">75% cost reduction, same-day multilingual
+                                delivery</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Decision Table -->
+                <div class="glass-card rounded-xl overflow-hidden mb-8">
+                    <div class="bg-primary/20 p-4">
+                        <h3 class="font-bold">Choosing the Right Video Tool</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-background-dark/50">
+                                <tr>
+                                    <th class="text-left p-3 text-primary">Scenario</th>
+                                    <th class="text-left p-3 text-primary">Best Tool</th>
+                                    <th class="text-left p-3 text-primary">Why</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-[#9cbaba]">
+                                <tr class="border-t border-white/5">
+                                    <td class="p-3">Cinematic hero video</td>
+                                    <td class="p-3 text-white">Sora 2</td>
+                                    <td class="p-3">Highest realism, native audio</td>
+                                </tr>
+                                <tr class="border-t border-white/5 bg-white/5">
+                                    <td class="p-3">Quick daily social video</td>
+                                    <td class="p-3 text-white">Pika Labs</td>
+                                    <td class="p-3">30-90 second generation</td>
+                                </tr>
+                                <tr class="border-t border-white/5">
+                                    <td class="p-3">Professional production control</td>
+                                    <td class="p-3 text-white">RunwayML</td>
+                                    <td class="p-3">Keyframing, camera paths</td>
+                                </tr>
+                                <tr class="border-t border-white/5 bg-white/5">
+                                    <td class="p-3">Corporate training video</td>
+                                    <td class="p-3 text-white">Synthesia</td>
+                                    <td class="p-3">230+ avatars, 140+ languages</td>
+                                </tr>
+                                <tr class="border-t border-white/5">
+                                    <td class="p-3">Translate video to new language</td>
+                                    <td class="p-3 text-white">HeyGen</td>
+                                    <td class="p-3">Lip-sync translation</td>
+                                </tr>
+                                <tr class="border-t border-white/5 bg-white/5">
+                                    <td class="p-3">Edit interview, remove filler</td>
+                                    <td class="p-3 text-white">Descript</td>
+                                    <td class="p-3">Word-based video editing</td>
+                                </tr>
+                                <tr class="border-t border-white/5">
+                                    <td class="p-3">Create social clips from webinar</td>
+                                    <td class="p-3 text-white">Opus Clip</td>
+                                    <td class="p-3">AI viral scoring</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Important Considerations -->
+                <div class="glass-card rounded-xl p-6 mb-8">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">warning</span>
+                        Important Considerations
+                    </h3>
+                    <ul class="space-y-2 text-[#9cbaba]">
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary">•</span>
+                            <span><strong class="text-white">Generation Speed:</strong> Pika (30-90 sec) vs. Runway (2-4
+                                min) vs. Sora (3-8 min)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary">•</span>
+                            <span><strong class="text-white">Copyright:</strong> Always add human creative direction for
+                                legal defensibility</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary">•</span>
+                            <span><strong class="text-white">Client Disclosure:</strong> Be transparent about AI usage
+                                in production workflows</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary">•</span>
+                            <span><strong class="text-white">Quality vs. Speed:</strong> Match the tool to the
+                                deliverable requirements</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Session 2 Action Items -->
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">checklist</span>
+                        Session 2 Action Items
+                    </h3>
+                    <ol class="space-y-3 text-[#9cbaba]">
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+                            <span>Create Runway free account—test Gen-4 with a campaign concept</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+                            <span>Try Pika Labs for rapid social content generation</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">3</span>
+                            <span>Explore Synthesia for multilingual capabilities</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">4</span>
+                            <span>Generate the same concept across Sora, Runway, and Pika—compare quality and
+                                speed</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">5</span>
+                            <span>Edit one video using Descript's word-based editing</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Closing Quote -->
+                <div class="glass-card rounded-xl p-6 mt-8 border-l-4 border-primary">
+                    <p class="text-lg italic text-[#9cbaba]">
+                        "The Art of Possible is about showing what's achievable today. These aren't future
+                        promises—these are tools you can use this afternoon.
+                        The question isn't 'Can AI do this?' It's 'Why aren't we doing this already?'"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider mx-4 md:mx-12"></div>
+
+        <!-- Month 1 Toolkit -->
+        <section id="toolkit" class="py-12 md:py-20 px-4 md:px-12">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">construction</span>
+                    <h2 class="text-2xl md:text-4xl font-bold font-display tracking-tight">Your Month 1 Toolkit: The
+                        <h2 class="text-2xl md:text-4xl font-bold font-display tracking-tight">Your Month 1 Toolkit: The
+                            Priority 6</h2>
+                </div>
+                <p class="text-[#9cbaba] mb-8">Start with these 5 free-tier tools. Master them before expanding.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- ChatGPT -->
+                    <div class="glass-card rounded-xl p-6 tool-card transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                1</div>
+                            <div>
+                                <h3 class="font-bold text-white">ChatGPT</h3>
+                                <p class="text-xs text-primary">The Swiss Army Knife</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-[#9cbaba] mb-3"><strong class="text-white">Best for:</strong> Campaign
+                            brainstorming, rapid copywriting iterations, social posts</p>
+                        <div class="bg-background-dark/50 rounded-lg p-3 text-xs text-[#9cbaba] mb-3">
+                            <strong class="text-primary">Guerilla Example:</strong> "Generate 30 disruptive billboard
+                            concepts for Toyota Urban Cruiser targeting young SA professionals"
+                        </div>
+                        <span class="inline-block bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">✅ Free Tier
+                            Unlimited</span>
+                    </div>
+
+                    <!-- Claude -->
+                    <div class="glass-card rounded-xl p-6 tool-card transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                2</div>
+                            <div>
+                                <h3 class="font-bold text-white">Claude</h3>
+                                <p class="text-xs text-primary">The Strategist</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-[#9cbaba] mb-3"><strong class="text-white">Best for:</strong> Long-form
+                            strategy docs, maintaining brand voice, nuanced client briefs</p>
+                        <div class="bg-background-dark/50 rounded-lg p-3 text-xs text-[#9cbaba] mb-3">
+                            <strong class="text-primary">Guerilla Example:</strong> "Write a 10-page campaign strategy
+                            for DStv Internet launch, maintaining our bold, anti-traditional voice"
+                        </div>
+                        <span class="inline-block bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">✅ Generous
+                            Limits</span>
+                    </div>
+
+                    <!-- Perplexity -->
+                    <div class="glass-card rounded-xl p-6 tool-card transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                3</div>
+                            <div>
+                                <h3 class="font-bold text-white">Perplexity</h3>
+                                <p class="text-xs text-primary">The Researcher</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-[#9cbaba] mb-3"><strong class="text-white">Best for:</strong> Real-time
+                            competitive research, trend analysis, fact-checking</p>
+                        <div class="bg-background-dark/50 rounded-lg p-3 text-xs text-[#9cbaba] mb-3">
+                            <strong class="text-primary">Guerilla Example:</strong> "Analyze AR usage in automotive
+                            advertising across South Africa. Cite sources."
+                        </div>
+                        <span class="inline-block bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">✅ 5
+                            Pro/day</span>
+                    </div>
+
+                    <!-- Midjourney -->
+                    <div
+                        class="glass-card rounded-xl p-6 tool-card transition-all duration-300 border border-primary/30">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                4</div>
+                            <div>
+                                <h3 class="font-bold text-white">Midjourney</h3>
+                                <p class="text-xs text-primary">The Visual Concepting Engine</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-[#9cbaba] mb-3"><strong class="text-white">Best for:</strong> Billboard
+                            concepts, AR visuals, pitch presentation imagery</p>
+                        <div class="bg-background-dark/50 rounded-lg p-3 text-xs text-[#9cbaba] mb-3">
+                            <strong class="text-primary">Guerilla Example:</strong> "AR mobile interface, product
+                            scanning experience, vibrant colors, South African user, professional photography --ar 16:9"
+                        </div>
+                        <span class="inline-block bg-primary/20 text-primary text-xs px-2 py-1 rounded">⭐ Already
+                            Licensed</span>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 tool-card transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                                5</div>
+                            <div>
+                                <h3 class="font-bold text-white">Higgsfield AI</h3>
+                                <p class="text-xs text-primary">Cutting‑edge AI video generation platform</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-[#9cbaba] mb-3"><strong class="text-white">Best for:</strong> Rapid
+                            prototyping and high‑quality video content</p>
+                        <div class="bg-background-dark/50 rounded-lg p-3 text-xs text-[#9cbaba] mb-3">
+                            <strong class="text-primary">Guerilla Example:</strong> "Test Higgsfield AI for quick video
+                            concepts and integrate into campaign assets"
+                        </div>
+                        <span class="inline-block bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">✅ Free /
+                            Self‑hosted</span>
+                    </div>
+                </div>
+
+                <!-- Google Gemini -->
+                <div class="glass-card rounded-xl p-6 tool-card transition-all duration-300">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                            6</div>
+                        <div>
+                            <h3 class="font-bold text-white">Google Gemini</h3>
+                            <p class="text-xs text-primary">The Native Multimodal</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-[#9cbaba] mb-3"><strong class="text-white">Best for:</strong> Pitch
+                        presentations, deep research, Google Workspace integration</p>
+                    <div class="bg-background-dark/50 rounded-lg p-3 text-xs text-[#9cbaba] mb-3">
+                        <strong class="text-primary">Guerilla Example:</strong> "Analyze this image of a competitor's
+                        shelf layout and suggest improvements"
+                    </div>
+                    <span class="inline-block bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">✅ 2M Context
+                        Free</span>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <div class="section-divider mx-4 md:mx-12"></div>
+
+        <!-- Prompt Engineering -->
+        <section id="prompts" class="py-12 md:py-20 px-4 md:px-12">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">edit_note</span>
+                    <h2 class="text-2xl md:text-4xl font-bold font-display tracking-tight">Prompt Engineering: Thinking,
+                        Not Syntax</h2>
+                </div>
+                <p class="text-[#9cbaba] mb-8">Forget "prompt hacks." Master the <strong
+                        class="text-white">framework</strong> instead.</p>
+
+                <!-- 4-Part Structure -->
+                <div class="glass-card rounded-xl p-6 md:p-8 mb-8">
+                    <h3 class="text-xl font-bold text-primary mb-6">The 4-Part Prompt Structure</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-background-dark/50 rounded-lg p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span
+                                    class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">1</span>
+                                <h4 class="font-bold text-white">ROLE</h4>
+                            </div>
+                            <p class="text-sm text-[#9cbaba]">"Act as a creative director at a bold, anti-traditional
+                                South African agency..."</p>
+                        </div>
+                        <div class="bg-background-dark/50 rounded-lg p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span
+                                    class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">2</span>
+                                <h4 class="font-bold text-white">CONTEXT</h4>
+                            </div>
+                            <p class="text-sm text-[#9cbaba]">"Our client is Toyota. Target audience: young urban
+                                professionals (25-35) in Joburg and Cape Town. Brand tone: confident, adventurous, not
+                                corporate."</p>
+                        </div>
+                        <div class="bg-background-dark/50 rounded-lg p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span
+                                    class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">3</span>
+                                <h4 class="font-bold text-white">TASK</h4>
+                            </div>
+                            <p class="text-sm text-[#9cbaba]">"Generate 10 billboard headlines for the new Urban Cruiser
+                                SUV."</p>
+                        </div>
+                        <div class="bg-background-dark/50 rounded-lg p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span
+                                    class="bg-primary text-black text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">4</span>
+                                <h4 class="font-bold text-white">CONSTRAINTS</h4>
+                            </div>
+                            <p class="text-sm text-[#9cbaba]">"Max 7 words per headline. Avoid clichés like 'your
+                                journey' or 'discover.' Focus on urban dominance and freedom."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Example -->
+                <div class="bg-primary/10 border border-primary/20 rounded-xl p-6 mb-8">
+                    <h3 class="text-lg font-bold mb-4">Real Guerilla Prompt Example</h3>
+                    <div class="bg-background-dark/80 rounded-lg p-4 text-sm text-[#9cbaba] font-mono mb-4">
+                        "Act as a creative technologist specializing in AR experiences. Our client sells premium vaping
+                        products. Generate 20 innovative ways to use AR to enhance the customer experience. Focus on
+                        mobile-first, easy-to-use interactions that feel magical but not gimmicky. Target: South African
+                        market."
+                    </div>
+                    <p class="text-[#9cbaba]"><strong class="text-white">Result:</strong> 20 concept seeds in 2 minutes
+                        → Team selects top 8 → Midjourney visualizes → Client presentation ready in 4 hours</p>
+                </div>
+
+                <!-- Golden Rule -->
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="text-lg font-bold mb-4">When AI Outputs Are Bad</h3>
+                    <div class="flex flex-col md:flex-row gap-4 mb-4">
+                        <div class="flex-1 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                            <p class="text-sm"><span class="text-red-400 font-bold">❌ Don't:</span> <span
+                                    class="text-[#9cbaba]">Blame the AI or give up</span></p>
+                        </div>
+                        <div class="flex-1 bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                            <p class="text-sm"><span class="text-green-400 font-bold">✅ Do:</span> <span
+                                    class="text-[#9cbaba]">Refine your prompt. Add specificity. Provide examples.
+                                    Iterate.</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                        <p class="text-sm text-yellow-400"><strong>🌟 Golden Rule:</strong> <span
+                                class="text-[#9cbaba]">If AI gives you generic output, you gave it a generic prompt.
+                                Specificity = Quality.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider mx-4 md:mx-12"></div>
+
+        <!-- Action Items -->
+        <section class="py-12 md:py-20 px-4 md:px-12">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+                    <h2 class="text-2xl md:text-4xl font-bold font-display tracking-tight">💡 Your Month 1 Action Items
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                        <span
+                            class="bg-primary text-black text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Sign up for</h4>
+                            <p class="text-sm text-[#9cbaba]">ChatGPT (Free), Claude (Free), Perplexity (Free)</p>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                        <span
+                            class="bg-primary text-black text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">2</span>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Request access</h4>
+                            <p class="text-sm text-[#9cbaba]">Midjourney license from team lead</p>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                        <span
+                            class="bg-primary text-black text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">3</span>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Practice</h4>
+                            <p class="text-sm text-[#9cbaba]">Use the 4-part prompt structure for your next client brief
+                            </p>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                        <span
+                            class="bg-primary text-black text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">4</span>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Experiment</h4>
+                            <p class="text-sm text-[#9cbaba]">Take one upcoming task and try AI-enhanced workflow vs.
+                                traditional. Compare results.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 mt-8 text-center">
+                    <p class="text-[#9cbaba]">
+                        <strong class="text-white">Next Session Preview:</strong> We'll dive into <em>tool
+                            comparisons</em> — when to use ChatGPT vs. Claude vs. Perplexity, and how to choose the
+                        right tool for each Guerilla project.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider mx-4 md:mx-12"></div>
+
+        <!-- Resources -->
+        <section id="resources" class="py-12 md:py-20 px-4 md:px-12">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="material-symbols-outlined text-primary text-3xl">library_books</span>
+                    <h2 class="text-2xl md:text-4xl font-bold font-display tracking-tight">📚 Resources</h2>
+                </div>
+                <p class="text-[#9cbaba] mb-8">Curated external resources to support your AI learning journey.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- AI Tool Databases -->
+                    <div class="glass-card rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-primary mb-4">AI Tool Databases</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="https://theaitrack.com/ai-tools-databases/" target="_blank"
+                                    class="text-white hover:text-primary transition-colors font-semibold">The AI Track —
+                                    AI Tools Databases →</a>
+                                <p class="text-xs text-[#9cbaba] mt-1">Comprehensive directory of AI tools, regularly
+                                    updated with new releases and categories.</p>
+                            </li>
+                            <li>
+                                <a href="https://theaitrack.com/ai-dictionary/" target="_blank"
+                                    class="text-white hover:text-primary transition-colors font-semibold">The AI Track —
+                                    AI Dictionary →</a>
+                                <p class="text-xs text-[#9cbaba] mt-1">Glossary of AI terms and concepts. Perfect for
+                                    getting up to speed on terminology.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Prompt Libraries -->
+                    <div class="glass-card rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-primary mb-4">Prompt Libraries</h3>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="https://theaitrack.com/prompt-collections/" target="_blank"
+                                    class="text-white hover:text-primary transition-colors font-semibold">The AI Track —
+                                    Prompt Collections →</a>
+                                <p class="text-xs text-[#9cbaba] mt-1">Curated prompt libraries across multiple AI tools
+                                    and use cases.</p>
+                            </li>
+                            <li>
+                                <a href="https://theaitrack.com/chatgpt-4o-image-prompts-collection/" target="_blank"
+                                    class="text-white hover:text-primary transition-colors font-semibold">ChatGPT 4o
+                                    Image Prompts →</a>
+                                <p class="text-xs text-[#9cbaba] mt-1">Dedicated collection of image generation prompts
+                                    for ChatGPT.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-10 px-4 md:px-12 py-8 border-t border-[#283939]">
+        <!-- Link of the Week Box -->
+        <div class="max-w-2xl mx-auto mb-10">
+            <div class="glass-card rounded-xl p-[1px] relative group overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/30 via-transparent to-primary/10 opacity-60">
+                </div>
+                <div class="bg-background-dark/95 rounded-xl p-6 text-center relative z-10 backdrop-blur-sm">
+                    <p class="text-xs text-primary font-bold uppercase tracking-widest mb-2">✨ Link of the Week</p>
+                    <p class="text-white/80 mb-4 text-sm">Experience the impossible with Higgsfield Mixed Media</p>
+                    <a href="https://higgsfield.ai/mixed-media-community/b960754b-ef1d-49b2-b99a-9f3a456e59b6"
+                        target="_blank"
+                        class="inline-flex items-center gap-2 bg-white/5 border border-primary/50 text-primary hover:bg-primary hover:text-black font-bold px-6 py-3 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(13,242,242,0.4)]">
+                        <span class="material-symbols-outlined">visibility</span>
+                        View Featured Creation
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 border-t border-white/5 pt-8">
+            <p class="text-sm text-white/50">© 2026 Guerilla.africa Training. Internal Use Only.</p>
+            <div class="flex items-center gap-6">
+                <span class="text-xs text-white/30 uppercase tracking-widest">Foundations Module</span>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Mobile Nav Toggle -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

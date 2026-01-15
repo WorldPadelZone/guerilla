@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI Training Foundations - Presentation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102222",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .horizontal-snap {
+            scroll-snap-type: x mandatory;
+            overflow-x: auto;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .slide-stage {
+            scroll-snap-align: start;
+            flex: 0 0 100vw;
+            height: 100vh;
+            overflow-y: auto;
+            /* Allow vertical scroll within slide if needed */
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(13, 242, 242, 0.4);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-active {
+            background: rgba(13, 242, 242, 0.05);
+            border: 1px solid rgba(13, 242, 242, 0.3);
+            box-shadow: 0 0 20px rgba(13, 242, 242, 0.1);
+        }
+
+        .grain-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opactiy='0.1'/%3E%3C/svg%3E");
+            opacity: 0.1;
+            /* slightly increased for visibility without external image */
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white overflow-hidden">
+    <!-- Grain Overlay -->
+    <div class="fixed inset-0 grain-overlay z-50 mix-blend-overlay"></div>
+
+    <!-- Header -->
+    <header
+        class="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-10 py-6 pointer-events-none">
+        <div class="flex items-center gap-4 text-white pointer-events-auto">
+            <div class="size-6 text-primary">
+                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z"
+                        fill="currentColor"></path>
+                </svg>
+            </div>
+            <div>
+                <h2 class="text-white text-lg font-bold leading-tight tracking-tight uppercase">Guerilla Foundations
+                </h2>
+                <p class="text-[10px] text-primary tracking-[0.3em] font-medium">MONTH 1: THE ART OF POSSIBLE</p>
+            </div>
+        </div>
+        <div class="pointer-events-auto">
+            <span class="text-xs font-mono text-white/50" id="slide-indicator">01 / 18</span>
+        </div>
+    </header>
+
+    <!-- Main Presentation Container -->
+    <main class="horizontal-snap w-full h-screen" onscroll="updateSlideIndicator()">
+
+        <!-- SLIDE 1: Title -->
+        <section
+            class="slide-stage relative flex items-center justify-center bg-gradient-to-br from-background-dark to-[#0a1515]">
+            <div class="z-10 text-center max-w-5xl px-6">
+                <span
+                    class="inline-block px-4 py-1 mb-6 border border-primary text-primary text-xs font-bold tracking-[0.4em] uppercase rounded-full glow">Module
+                    01</span>
+                <h1
+                    class="text-6xl md:text-9xl font-bold leading-none tracking-tighter mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">
+                    FOUNDATIONS
+                </h1>
+                <p class="text-white/60 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+                    Building the bedrock for AI adoption. This isn't about syntax—it's about <span
+                        class="text-primary italic">thinking differently</span>.
+                </p>
+                <div class="flex flex-col items-center gap-2 animate-bounce opacity-50 mt-10">
+                    <span class="text-[10px] tracking-widest uppercase">Swipe / Scroll</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Session 1 Intro -->
+        <section
+            class="slide-stage flex items-center justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="material-symbols-outlined text-primary text-5xl">image</span>
+                        <h2 class="text-5xl font-bold tracking-tight leading-tight">Session 1<br /><span
+                                class="text-primary">Image Generation</span></h2>
+                    </div>
+                    <p class="text-xl text-white/70 leading-relaxed mb-8">
+                        AI image generation isn't about replacing designers—it's about <strong>10x-ing your concepting
+                            speed</strong>.
+                        What once took days now takes hours.
+                    </p>
+                </div>
+                <div class="glass-card p-10 rounded-2xl border-l-4 border-l-primary relative">
+                    <span
+                        class="material-symbols-outlined absolute top-6 right-6 text-white/10 text-6xl">format_quote</span>
+                    <p class="text-2xl italic text-white font-light leading-relaxed">
+                        "Before AI: 3 billboard concepts in 4 days.<br>
+                        With AI: 30 concepts in 4 hours.<br><br>
+                        Same team. Same talent.<br>
+                        <span class="text-primary font-bold not-italic">Radically different output.</span>"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Image Tier 1 (Midjourney & GPT Image) -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <h3 class="text-2xl font-bold mb-10 text-center flex items-center justify-center gap-2">
+                <span class="text-3xl">🏆</span> Tier 1: Graphic Leaders
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <!-- Item 1 -->
+                <div
+                    class="glass-card-active rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">⭐</span>
+                            <span
+                                class="bg-primary/20 text-primary px-3 py-1 rounded text-xs font-bold uppercase">Licensed</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">Midjourney v8</h4>
+                        <p class="text-white/60 text-lg">Unmatched artistic quality. The gold standard for polished
+                            visuals.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/midjourney_example.png" alt="Midjourney Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "A hyper-realistic,
+                            artistic billboard concept of a futuristic sneaker brand in Cape Town, vibrant colors,
+                            cinematic lighting, aspect ratio 16:9, high detailed product shot"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Billboard concepts, campaign mood boards, pitch visuals.</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">🎯</span>
+                            <span
+                                class="bg-white/10 text-white px-3 py-1 rounded text-xs font-bold uppercase">$20/mo</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">GPT Image 1.5</h4>
+                        <p class="text-white/60 text-lg">OpenAI's latest model (DALL-E 3 successor). Superior text
+                            rendering.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/gpt_image_example.png" alt="GPT Image Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "A photorealistic
+                            close-up of a coffee cup with the text 'GUERILLA' clearly written in latte art on the foam,
+                            cozy cafe atmosphere, sharp focus, 8k resolution"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Logos, photorealistic details, complex prompt adherence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Image Tier 1 (ChatGPT & Gemini) -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <h3 class="text-2xl font-bold mb-10 text-center flex items-center justify-center gap-2">
+                <span class="text-3xl">💬</span> Tier 1: Conversational Tools
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <!-- Item 1 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">🤖</span>
+                            <span
+                                class="bg-white/10 text-white px-3 py-1 rounded text-xs font-bold uppercase">$20/mo</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">ChatGPT (GPT-4o)</h4>
+                        <p class="text-white/60 text-lg">Conversational iteration. Edit images by talking to them.</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Quick mockups during client calls, rapid brainstorming.</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">🔷</span>
+                            <span
+                                class="bg-green-500/20 text-green-400 px-3 py-1 rounded text-xs font-bold uppercase">Free
+                                Tier</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">Google Gemini 2.5</h4>
+                        <p class="text-white/60 text-lg">Speed, photorealism, and Workspace integration.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/gemini_example.png" alt="Gemini Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "A clean, modern
+                            workspace desk with a laptop displaying a complex colorful data analysis dashboard,
+                            photorealistic, soft daylight, depth of field"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Editing existing images, integrated workflow.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Higgsfield & Tier 2 Summary -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <!-- Item 1: Higgsfield -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform border border-primary/30">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">💡</span>
+                            <span
+                                class="bg-green-500/20 text-green-400 px-3 py-1 rounded text-xs font-bold uppercase">Free
+                                Tier</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">Higgsfield AI</h4>
+                        <p class="text-white/60 text-lg">Cutting‑edge platform for rapid prototyping.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/higgsfield_example.png" alt="Higgsfield Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm text-primary mb-4">"A top contender for high-quality output."</p>
+                        <div class="bg-black/40 p-4 rounded-lg">
+                            <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                            <p class="text-sm">Creative prototyping, stylized assets.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2: Tier 2 List -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-center hover:scale-[1.01] transition-transform">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                        <span class="text-2xl">🎨</span> Tier 2 Specialized
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="border-b border-white/10 pb-2">
+                            <strong class="text-white block">Adobe Firefly</strong>
+                            <span class="text-xs text-white/50">Commercially safe, licensed data.</span>
+                        </li>
+                        <li class="border-b border-white/10 pb-2">
+                            <strong class="text-white block">Leonardo.ai</strong>
+                            <span class="text-xs text-white/50">Character consistency expert.</span>
+                        </li>
+                        <li class="border-b border-white/10 pb-2">
+                            <strong class="text-white block">Ideogram</strong>
+                            <span class="text-xs text-white/50">Industry-leading text accuracy.</span>
+                        </li>
+                        <li>
+                            <strong class="text-white block">FLUX</strong>
+                            <span class="text-xs text-white/50">Open-source powerhouse for custom models.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Session 1 Action Items -->
+        <section class="slide-stage flex flex-row items-stretch border-l border-white/5">
+            <div class="w-1/2 p-20 flex flex-col justify-center bg-background-dark/50">
+                <h3 class="text-4xl font-bold mb-8">Concept vs. Output</h3>
+                <div class="space-y-6">
+                    <div class="bg-white/5 p-6 rounded-xl">
+                        <p class="text-xs text-white/50 uppercase mb-2">Old Way (4 Days)</p>
+                        <p class="text-lg">Designer manually mocks up 2-3 concepts.</p>
+                    </div>
+                    <div class="bg-primary/10 border border-primary/20 p-6 rounded-xl">
+                        <p class="text-xs text-primary uppercase mb-2">New Way (4 Hours)</p>
+                        <p class="text-lg text-white">ChatGPT brainstorms 20 &rarr; Midjourney visualizes 8 &rarr;
+                            Refine top 3.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2 p-20 flex flex-col justify-center bg-background-dark">
+                <h3 class="text-3xl font-bold mb-8 flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">checklist</span> Action Items
+                </h3>
+                <ol class="space-y-6">
+                    <li class="flex items-center gap-4">
+                        <span
+                            class="size-8 rounded-full bg-primary text-black font-bold flex items-center justify-center">1</span>
+                        <span>Request Midjourney v8 access</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span
+                            class="size-8 rounded-full bg-primary text-black font-bold flex items-center justify-center">2</span>
+                        <span>Test GPT Image 1.5 via ChatGPT Plus</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span
+                            class="size-8 rounded-full bg-primary text-black font-bold flex items-center justify-center">3</span>
+                        <span>Run same prompt across 3 tools to compare</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span
+                            class="size-8 rounded-full bg-primary text-black font-bold flex items-center justify-center">4</span>
+                        <span>Create one active client concept</span>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Session 2 Intro -->
+        <section
+            class="slide-stage flex items-center justify-center p-8 md:p-20 bg-background-dark border-l border-white/5 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none"></div>
+            <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+                <div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="material-symbols-outlined text-primary text-5xl">videocam</span>
+                        <h2 class="text-5xl font-bold tracking-tight leading-tight">Session 2<br /><span
+                                class="text-primary">Video Generation</span></h2>
+                    </div>
+                    <p class="text-xl text-white/70 leading-relaxed mb-8">
+                        2026 is the year AI video became <strong>production-ready</strong>.
+                        Cinematic quality, synchronized audio, consistency.
+                    </p>
+                </div>
+                <div class="glass-card p-10 rounded-2xl border-l-4 border-l-primary relative">
+                    <span
+                        class="material-symbols-outlined absolute top-6 right-6 text-white/10 text-6xl">format_quote</span>
+                    <p class="text-2xl italic text-white font-light leading-relaxed">
+                        "The best video tool depends on your goal:<br>
+                        Photorealism? <strong>Sora</strong>.<br>
+                        Control? <strong>Runway</strong>.<br>
+                        Speed? <strong>Pika</strong>.<br>
+                        Presentations? <strong>Synthesia</strong>."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: Video (Kling & Sora) -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <h3 class="text-2xl font-bold mb-10 text-center flex items-center justify-center gap-2">
+                <span class="text-3xl">🎬</span> Cinematic Leaders
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">⭐</span>
+                            <span
+                                class="bg-primary/20 text-primary px-3 py-1 rounded text-xs font-bold uppercase">Leader</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">Kling AI 2.6</h4>
+                        <p class="text-white/60 text-lg">Ultra-realistic motion physics. 2-minute clips with audio.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/kling_example.png" alt="Kling Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "Cinematic action movie
+                            still, high speed car chase, motion blur, realistic lighting, kling ai style, 16:9"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">High-end cinematic sequences.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">👁️</span>
+                            <span
+                                class="bg-white/10 text-white px-3 py-1 rounded text-xs font-bold uppercase">$20/mo</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">OpenAI Sora 2</h4>
+                        <p class="text-white/60 text-lg">Photorealism benchmark. Near indistinguishable from reality.
+                        </p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/sora_example.png" alt="Sora Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "Photorealistic cinematic
+                            movie still of a woolly mammoth walking through snowy new york city, highly detailed, sora
+                            style, 16:9"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Hero shots, absolute realism.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Video (Veo & Runway) -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <h3 class="text-2xl font-bold mb-10 text-center flex items-center justify-center gap-2">
+                <span class="text-3xl">🛠️</span> Professional Control
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <h4 class="text-4xl font-bold text-white mb-2">Google Veo 3.1</h4>
+                        <p class="text-white/60 text-lg">4K upscaling, vertical video, and reference images.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/veo_example.png" alt="Veo Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "Cinematic sci-fi movie
+                            still, futuristic city, vertical video format adapted to landscape, high resolution, google
+                            veo style"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Versatile content, sci-fi to talking-head.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">🎛️</span>
+                            <span
+                                class="bg-green-500/20 text-green-400 px-3 py-1 rounded text-xs font-bold uppercase">Free
+                                Tier</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">RunwayML Gen-4.5</h4>
+                        <p class="text-white/60 text-lg">Motion Brush, Director Mode, Keyframing.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/runway_example.png" alt="Runway Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "Abstract artistic video
+                            frame, fluid simulation, liquid gradient colors, runwayml style, 16:9"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Frame-level control for editors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: Video (Pika & Luma) -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <h3 class="text-2xl font-bold mb-10 text-center flex items-center justify-center gap-2">
+                <span class="text-3xl">⚡</span> Speed & Aesthetics
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">🐇</span>
+                            <span
+                                class="bg-green-500/20 text-green-400 px-3 py-1 rounded text-xs font-bold uppercase">Free
+                                Tier</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">Pika Labs 2.5</h4>
+                        <p class="text-white/60 text-lg">Speed champion (30-90s generation). Stylized output.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/pika_example.png" alt="Pika Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "Fun animated 3d
+                            character, pixar style, bright lighting, melting effect, pika labs style, 16:9"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Daily social content, quick effects.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div>
+                        <h4 class="text-4xl font-bold text-white mb-2">Luma Dream Machine</h4>
+                        <p class="text-white/60 text-lg">Smooth, aesthetic motion.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/luma_example.png" alt="Luma Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <p class="mt-2 text-[10px] text-white/40 italic leading-tight">Prompt: "Smooth motion capture of
+                            a drone flying over a landscape, dreamlike quality, luma dream machine style, 16:9"</p>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Brand content landscapes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: Video (Higgsfield & Avatars) -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform border border-primary/30">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-5xl">💡</span>
+                            <span
+                                class="bg-green-500/20 text-green-400 px-3 py-1 rounded text-xs font-bold uppercase">Free
+                                Tier</span>
+                        </div>
+                        <h4 class="text-4xl font-bold text-white mb-2">Higgsfield AI</h4>
+                        <p class="text-white/60 text-lg">Specialized video platform for creators.</p>
+                        <div class="mt-4 overflow-hidden rounded-lg h-32 w-full border border-white/10">
+                            <img src="./assets/images/higgsfield_example.png" alt="Higgsfield Example"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-4 rounded-lg mt-6">
+                        <strong class="text-primary uppercase text-xs tracking-wider block mb-1">Best For</strong>
+                        <p class="text-sm">Rapid prototyping high-quality video artifacts.</p>
+                    </div>
+                </div>
+                <!-- Avatars Summary -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-center hover:scale-[1.01] transition-transform">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                        <span class="text-2xl">👤</span> Avatars & Translation
+                    </h3>
+                    <ul class="space-y-6">
+                        <li class="border-b border-white/10 pb-4">
+                            <strong class="text-white block text-xl mb-1">Synthesia</strong>
+                            <p class="text-sm text-white/60">230+ avatars. Best for corporate training.</p>
+                        </li>
+                        <li>
+                            <strong class="text-white block text-xl mb-1">HeyGen</strong>
+                            <p class="text-sm text-white/60">Lip-sync translation. 1 shot &rarr; 4 languages.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: Toolkit Intro -->
+        <section class="slide-stage flex items-center justify-center p-8 bg-background-dark border-l border-white/5">
+            <div class="text-center">
+                <span class="material-symbols-outlined text-primary text-6xl mb-6">construction</span>
+                <h2 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6">THE PRIORITY 6</h2>
+                <p class="text-2xl text-white/60">Your core toolkit for Month 1.<br>Master these before expanding.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 13: Toolkit 1 & 2 -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <!-- Tool 1 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                            1</div>
+                        <h3 class="text-3xl font-bold text-white">ChatGPT</h3>
+                    </div>
+                    <p class="text-lg text-white/70">The Swiss Army Knife. Campaign brainstorming & social posts.</p>
+                    <div class="bg-white/5 p-4 rounded-lg mt-4">
+                        <strong class="text-primary text-xs uppercase">Example</strong>
+                        <p class="text-sm italic">"Generate 30 disruptive billboard concepts..."</p>
+                    </div>
+                </div>
+                <!-- Tool 2 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                            2</div>
+                        <h3 class="text-3xl font-bold text-white">Claude</h3>
+                    </div>
+                    <p class="text-lg text-white/70">The Strategist. Long-form strategy & brand voice.</p>
+                    <div class="bg-white/5 p-4 rounded-lg mt-4">
+                        <strong class="text-primary text-xs uppercase">Example</strong>
+                        <p class="text-sm italic">"Write a 10-page campaign strategy..."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 14: Toolkit 3 & 4 -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <!-- Tool 3 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                            3</div>
+                        <h3 class="text-3xl font-bold text-white">Perplexity</h3>
+                    </div>
+                    <p class="text-lg text-white/70">The Researcher. Real-time competitive analysis & fact-checking.</p>
+                    <div class="bg-white/5 p-4 rounded-lg mt-4">
+                        <strong class="text-primary text-xs uppercase">Example</strong>
+                        <p class="text-sm italic">"Analyze AR usage in automotive ads..."</p>
+                    </div>
+                </div>
+                <!-- Tool 4 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform border border-primary/30">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                            4</div>
+                        <h3 class="text-3xl font-bold text-white">Midjourney</h3>
+                    </div>
+                    <p class="text-lg text-white/70">The Visual Engine. Best for pitch presentation imagery.</p>
+                    <div class="bg-white/5 p-4 rounded-lg mt-4">
+                        <strong class="text-primary text-xs uppercase">Example</strong>
+                        <p class="text-sm italic">"AR mobile interface, vibrant colors --ar 16:9"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 15: Toolkit 5 & 6 -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto w-full h-[60vh]">
+                <!-- Tool 5 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                            5</div>
+                        <h3 class="text-3xl font-bold text-white">Higgsfield AI</h3>
+                    </div>
+                    <p class="text-lg text-white/70">Video Platform. Rapid prototyping & high-quality video assets.</p>
+                    <div class="bg-white/5 p-4 rounded-lg mt-4">
+                        <strong class="text-primary text-xs uppercase">Example</strong>
+                        <p class="text-sm italic">"Test Higgsfield for quick video concepts"</p>
+                    </div>
+                </div>
+                <!-- Tool 6 -->
+                <div
+                    class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                            6</div>
+                        <h3 class="text-3xl font-bold text-white">Gemini</h3>
+                    </div>
+                    <p class="text-lg text-white/70">Native Multimodal. Deep research & Workspace integration.</p>
+                    <div class="bg-white/5 p-4 rounded-lg mt-4">
+                        <strong class="text-primary text-xs uppercase">Example</strong>
+                        <p class="text-sm italic">"Analyze this competitor's shelf layout..."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 16: Prompts Logic -->
+        <section class="slide-stage flex flex-row items-stretch border-l border-white/5">
+            <div class="w-1/2 p-20 flex flex-col justify-center bg-background-dark">
+                <h3 class="text-5xl font-bold mb-8 text-primary">The 4-Part Structure</h3>
+                <p class="text-xl text-white/60 mb-10">Forget "hacks". Master the framework.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <span class="size-8 rounded bg-white/10 flex items-center justify-center font-bold">1</span>
+                        <span class="text-2xl font-bold">Role</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="size-8 rounded bg-white/10 flex items-center justify-center font-bold">2</span>
+                        <span class="text-2xl font-bold">Context</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="size-8 rounded bg-white/10 flex items-center justify-center font-bold">3</span>
+                        <span class="text-2xl font-bold">Task</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="size-8 rounded bg-white/10 flex items-center justify-center font-bold">4</span>
+                        <span class="text-2xl font-bold">Constraints</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2 p-20 flex flex-col justify-center bg-background-dark/50 p-6 md:p-20">
+                <div class="glass-card p-8 rounded-xl">
+                    <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-yellow-500">lightbulb</span> Golden Rule
+                    </h4>
+                    <p class="text-xl italic text-white/80 leading-relaxed">
+                        "If AI gives you generic output, you gave it a generic prompt.<br><br>
+                        <strong class="text-primary">Specificity = Quality.</strong>"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 17: Month 1 Checklist -->
+        <section
+            class="slide-stage flex flex-col justify-center p-8 md:p-20 bg-background-dark border-l border-white/5">
+            <h2 class="text-4xl font-bold mb-10 text-center uppercase tracking-widest">Action Checklist</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto w-full">
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4">
+                    <span class="material-symbols-outlined text-green-400 text-3xl">check_box</span>
+                    <div>
+                        <strong class="block text-lg">Sign Up</strong>
+                        <span class="text-white/50">ChatGPT, Claude, Perplexity (All Free)</span>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4">
+                    <span class="material-symbols-outlined text-green-400 text-3xl">check_box</span>
+                    <div>
+                        <strong class="block text-lg">Request Access</strong>
+                        <span class="text-white/50">Midjourney license from team lead</span>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">check_box_outline_blank</span>
+                    <div>
+                        <strong class="block text-lg">Practice</strong>
+                        <span class="text-white/50">Use 4-part structure on 1 brief</span>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">check_box_outline_blank</span>
+                    <div>
+                        <strong class="block text-lg">Experiment</strong>
+                        <span class="text-white/50">Run AI workflow vs Traditional</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 18: Closing -->
+        <section class="slide-stage flex items-center justify-center bg-black">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold mb-6 text-white">guerilla<span class="text-primary">.africa</span></h2>
+                <p class="text-white/50 text-sm tracking-widest uppercase">Internal Training Module 01</p>
+                <a href="#resources"
+                    class="inline-block mt-8 text-primary border-b border-primary pb-1 hover:text-white transition-colors">View
+                    Resources Folder</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="fixed bottom-0 left-0 right-0 p-4 pointer-events-none flex justify-between items-end opacity-50">
+        <div class="text-[10px] uppercase tracking-widest">
+            Presentation Mode
+        </div>
+        <div class="flex gap-2 pointer-events-auto">
+            <!-- Navigation hints if needed -->
+        </div>
+    </footer>
+
+    <script>
+        function updateSlideIndicator() {
+            const container = document.querySelector('.horizontal-snap');
+            const scrollLeft = container.scrollLeft;
+            const width = container.offsetWidth;
+            const slideIndex = Math.round(scrollLeft / width) + 1;
+
+            // Format with leading zero
+            const displayIndex = slideIndex < 10 ? '0' + slideIndex : slideIndex;
+            document.getElementById('slide-indicator').innerText = displayIndex + " / 18";
+        }
+    </script>
+</body>
+
+</html>
